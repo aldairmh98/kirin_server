@@ -50,6 +50,9 @@ async def main():
         the_message = await agent.parse_message_using_nlu_interpreter(the_input)
         tasksAutomation(the_message['intent']['name'])
 
+def delete_branch(name):
+    repo.delete_head(name)
+
 def watcher():
     path = sys.argv[1] if len(sys.argv) > 1 else '.'
     event_handler = my_LoggingEventHandler()
@@ -65,12 +68,9 @@ def watcher():
 if __name__ == "__main__":
     #repo.git.checkout('master')
 
-    for head in repo.heads:
-        if head.name != 'master':
-            #repo.git.checkout(head.name)
-            #print(repo.active_branch)
-            repo.delete_head(head.name)
-            #repo.delete_head()
-    #print(repo.active_branch)
-    #asyncio.run(main())
+    #for head in repo.heads:
+     #   if head.name != 'master':
+            
+    print(repo.active_branch)
+    asyncio.run(main())
     #Another change to proof this stuff bro gg
