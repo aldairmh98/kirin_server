@@ -17,7 +17,7 @@ def tasksAutomation(intent):
     changedFiles = [ item.a_path for item in repo.index.diff(None) ]
     if intent == 'version':
         if len(changedFiles) > 0:
-            commit_message = input('Pon tu mensaje para el commit aquí')
+            commit_message = input('Pon tu mensaje para el commit aquí: ')
             repo.index.add(changedFiles)
             repo.index.commit(str(commit_message))
             print('Se ha actualizado')
