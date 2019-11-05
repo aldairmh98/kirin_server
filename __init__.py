@@ -33,7 +33,9 @@ def tasksAutomation(intent):
         if len(changedFiles) > 0:
             do_version(changedFiles)    
         name_branch = input('Ingrese nombre del branch')
-        new_branch = repo.create_head(name_branch)
+        new_branch = repo.create_head(str(random()))
+        new_branch.checkout()
+        print(type(new_branch))
         print(new_branch.name)
     return
 
