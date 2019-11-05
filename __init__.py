@@ -13,18 +13,28 @@ from random import random
 
 repo = Repo('.')
 
+def do_version(changedFiles):
+    commit_message = input('Pon tu mensaje para el commit aquí: ')
+    repo.index.add(changedFiles)
+    repo.index.commit(str(commit_message))
+    print('Se ha actualizado')
+    return
+
 def tasksAutomation(intent):
     changedFiles = [ item.a_path for item in repo.index.diff(None) ]
     if intent == 'version':
         if len(changedFiles) > 0:
-            commit_message = input('Pon tu mensaje para el commit aquí: ')
-            repo.index.add(changedFiles)
-            repo.index.commit(str(commit_message))
-            print('Se ha actualizado')
+            do_version(changedFiles)            
             return
         else:
             print('Todo está actualizado')
             return
+    elif intent == 'branch_creation':
+        if len(changedFiles) > 0:
+            do_version(changedFiles)    
+        name_branch = input('Ingrese nombre del branch')
+        new_branch = repo.create_head(name_branch)
+        print(new_branch.name)
     return
 
 async def main():
