@@ -1,5 +1,5 @@
-from rasa.core.agent import Agent
-from rasa.core.interpreter import RasaNLUInterpreter
+#from rasa.core.agent import Agent
+#from rasa.core.interpreter import RasaNLUInterpreter
 import asyncio
 import threading
 import sys
@@ -8,6 +8,8 @@ import logging
 from watchdog.observers import Observer
 from my_handler import my_LoggingEventHandler
 from git import Repo
+from random import seed
+from random import random
 
 repo = Repo('.')
 
@@ -40,5 +42,9 @@ def watcher():
         observer.stop()
 
 if __name__ == "__main__":
-    print(repo.untracked_files)
+    changedFiles = [ item.a_path for item in repo.index.diff(None) ]
+    print(changedFiles)
+    repo.index.add(changedFiles)
+    repo.index.commit(str(random))
     #asyncio.run(main())
+    #Another change to proof this stuff bro gg
