@@ -1,5 +1,5 @@
-#from rasa.core.agent import Agent
-#from rasa.core.interpreter import RasaNLUInterpreter
+from rasa.core.agent import Agent
+from rasa.core.interpreter import RasaNLUInterpreter
 import asyncio
 import threading
 import sys
@@ -14,20 +14,29 @@ from random import random
 repo = Repo('.')
 
 def tasksAutomation(intent):
+    changedFiles = [ item.a_path for item in repo.index.diff(None) ]
     if intent == 'version':
-        branch = repo.active_branch
-        print(branch.name)
+        if len(changedFiles) > 0:
+            commit_message = input('Pon tu mensaje para el commit aquí')
+            repo.index.add(changedFiles)
+            repo.index.commit(str(commit_message))
+            print('Se ha actualizado')
+            return
+        else:
+            print('Todo está actualizado')
+            return
+    return
 
 async def main():
     agent = Agent.load("./models/nlu.tar.gz")
     x = threading.Thread(target=watcher, daemon=True)
     x.start()
-    the_input = 'not is exit definitively'
+    the_input = 'not i exit definitively'
     while(the_input != 'exit'):
         print('Type exit to exit: What Do you want bro?')
         the_input = input()
         the_message = await agent.parse_message_using_nlu_interpreter(the_input)
-        print(the_message['intent'])
+        tasksAutomation(the_message['intent']['name'])
 
 def watcher():
     path = sys.argv[1] if len(sys.argv) > 1 else '.'
@@ -42,9 +51,5 @@ def watcher():
         observer.stop()
 
 if __name__ == "__main__":
-    changedFiles = [ item.a_path for item in repo.index.diff(None) ]
-    print(changedFiles)
-    repo.index.add(changedFiles)
-    repo.index.commit(str(random))
-    #asyncio.run(main())
+    asyncio.run(main())
     #Another change to proof this stuff bro gg
