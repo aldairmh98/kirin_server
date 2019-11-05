@@ -67,8 +67,9 @@ if __name__ == "__main__":
 
     for head in repo.heads:
         if head.name != 'master':
-            repo.git.checkout(head.name)
-            print(repo.active_branch)
+            #repo.git.checkout(head.name)
+            #print(repo.active_branch)
+            repo.delete_head(head.name)
             #repo.delete_head()
     #print(repo.active_branch)
     #asyncio.run(main())
