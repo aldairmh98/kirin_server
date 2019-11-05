@@ -63,5 +63,11 @@ def watcher():
         observer.stop()
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    #repo.git.checkout('master')
+    for head in repo.heads:
+        if head.name != 'master':
+            repo.git.checkout(head.name)
+            print(repo.active_branch)
+    #print(repo.active_branch)
+    #asyncio.run(main())
     #Another change to proof this stuff bro gg
