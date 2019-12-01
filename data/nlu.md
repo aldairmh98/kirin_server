@@ -26,11 +26,13 @@
 - branch
 - ver mis branches
 
-## intent:gitignore
-- configura gitignore
-- agregar archivos a gitignore
-- no quiero subir archivos
-- no subir archivos
+## intent:push
+- git push
+- push
+- subir cambios
+- subir
+- publicar cambios
+- publicar
 
 ## intent:change_url
 - cambiar url remoto
@@ -40,11 +42,16 @@
 - poner nuevo url remoto
 - pon nuevo url remoto
 - pon nuevo link remoto
+- asignar url remoto
 
 ## intent:show_user
 - ver usuario
 - muestra usuario
 - lista usuario
+- consulta usuario
+- mostrar usuario
+- enseñar usuario
+- listar usuario
 
 ## intent:git_configuration
 - configura git

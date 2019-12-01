@@ -10,8 +10,11 @@ from my_handler import my_LoggingEventHandler
 from git import Repo
 from random import seed
 from random import random
+import os
 
-repo = Repo('.')
+dirname = os.path.dirname(__file__)
+
+repo = Repo('C:/Users/aldai/desarrollo/assistant_kirin/tutorial1')
 
 def do_version(changedFiles):
     commit_message = input('Pon tu mensaje para el commit aquí: ')
@@ -37,6 +40,18 @@ def tasksAutomation(intent):
         new_branch.checkout()
         print(type(new_branch))
         print(new_branch.name)
+    elif intent == 'change_user':
+        user = repo.config_reader().get_value('user', 'email') + ' ' + repo.config_reader().get_value('user', 'name') #Usuario actual
+        print(user)
+        if input('Quiere cambiarlo? y/N') == 'y':
+            email = input('Ingrese email del usuario')
+            nombre = input('Ingrese nombre')
+            with repo.config_writer() as wr:
+                wr.set_value('user','email',email).release()
+                wr.set_value('user', 'name', nombre).release()
+                print(repo.config_reader().get_value('user', 'email') + ' ' + repo.config_reader().get_value('user', 'name') )
+    elif intent == 'show_user':
+        print(repo.config_reader().get_value('user', 'email') + ' ' + repo.config_reader().get_value('user', 'name'))
     return
 
 async def main():
