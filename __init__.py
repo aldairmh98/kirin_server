@@ -25,6 +25,9 @@ def do_version(changedFiles):
 
 def tasksAutomation(intent):
     changedFiles = [ item.a_path for item in repo.index.diff(None) ]
+    for item in repo.untracked_files :
+        changedFiles.append(item)  
+    print(changedFiles)
     if intent == 'version':
         if len(changedFiles) > 0:
             do_version(changedFiles)            

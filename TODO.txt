@@ -1,0 +1,25 @@
+AGREGAR INTENTS PARA QUE YA QUEDE PARA LA TESINA:
+    MANEJO DE RAMAS:
+        - Estado de ramas (Ver cambios o si está todo) -> branch_status
+        - Creación de ramas -> branch_creation
+        - Borrado de ramas -> branch_deletion
+        - Cambiar de ramas -> branch_change
+        - Listado de ramas -> branch_list
+        - Fusionar ramas -> branch_merge
+    MANEJO DE COMMITS:
+        - Stage Archivos
+        - Realizar Versión -> version
+        - Listar COMMITS -> commits_list
+        - Volver a commit anterior -> commit_back
+     
+    GESTIÓN DE CAMBIOS REMOTOS:
+        - Clonar repositorio-> clone
+        - Bajar los cambios -> pull
+        - Subir los cambios -> push
+    
+    GESTIÓN de configuración básica para versionar:
+        - Asignación de URL o actualización -> change_url
+        - Inicializar Git
+        - Asignación de usuario o actualización -> change_user
+        - Consulta de usuario -> show_user
+        - Constulta de URL Remote -> show_url
