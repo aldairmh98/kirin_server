@@ -7,6 +7,7 @@ import os
 from werkzeug.utils import secure_filename
 import speech_recognition as sr
 from git_functions import branch_management, commit_management
+from dialogflow import commit_dialogs
 
 agent = Agent.load("./models/nlu.tar.gz")
 
@@ -20,7 +21,7 @@ intent_activities = {
 }
 
 intent_dialog_flow = {
-    ''
+    'version': commit_dialogs.commit_dialog
 }
 
 
@@ -55,13 +56,11 @@ def intent_recognition():
         utterance = 'onProof'
         # HERE IT GOES SPEECH RECOGNITION
     the_message = asyncio.run(agent.parse_message_using_nlu_interpreter(utterance))
-    print(the_message)
-    return jsonify({'id': 'commit_text', 'request': 'Escribe el mensaje de tu commit:', 'default': '', 'response': '',
-                    'selection': False, 'list_id': -1})
+    return jsonify({'intent_name': the_message['intent']['name'], 'dialog_flow': intent_dialog_flow[the_message['intent']['name']]()}), 202
 
 
 @app.route('/intent/<intent_name>', methods=['POST'])
-def taskAutomation(intent_name):
+def task_automation(intent_name):
     intent_name = request.view_args['intent_name']
     response = jsonify(intent_activities[intent_name](request.json))
     response.headers.add('Access-Control-Allow-Origin', '*')
