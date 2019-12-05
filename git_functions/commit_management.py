@@ -4,7 +4,7 @@ repo = Repo('C:/Users/aldai/desarrollo/assistant_kirin/tutorial1')
 
 
 def commit_list(messageBody):
-    commits =  list(repo.iter_commits(max_count=4))
+    commits =  list(repo.iter_commits(max_count=1))
     for c in commits:
         print(c)
     return [{'name': str(c.author), 'email': c.author.email, 'msg': c.message} for c in commits]
