@@ -17,7 +17,8 @@ intent_activities = {
     'branch_creation': branch_management.branch_creation,
     'branch_status': branch_management.branch_status,
     'commit_list': commit_management.commit_list,
-    'version': commit_management.version
+    'version': commit_management.version,
+    'revert': commit_management.revert
 }
 
 intent_dialog_flow = {

@@ -12,6 +12,9 @@ def commit_list(messageBody):
         print(c)
     return [{'sha': c.__str__(), 'name': str(c.author), 'email': c.author.email, 'msg': c.message} for c in commits]
 
+def revert(messageBody):
+    repo.git.revert(messageBody['sha'], no_edit=True)
+    return
 
 def version(messageBody):
     files_list = branch_status()
