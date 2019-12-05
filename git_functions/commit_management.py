@@ -20,5 +20,5 @@ def version(messageBody):
     repo.index.add(modified_file_list)
     if len(removed_file_list) > 0:
         repo.index.remove(removed_file_list, True, r=True)
-    repo.index.commit(str(messageBody['message']) + ' ' + date.today().__str__())
+    repo.index.commit(str(messageBody['message']) + ' Versionado el: ' + date.today().__str__())
     return
