@@ -11,6 +11,10 @@ def commit_list(messageBody):
 
 
 def version(messageBody):
-    repo.index.add(branch_status())
+    files_list = branch_status()
+    modified_file_list = [_file['path'] for _file in files_list if _file['status'] != 'D']
+    removed_file_list = [_file['path'] for _file in files_list if _file['status'] == 'D']
+    repo.index.add(modified_file_list)
+    repo.index.remove(removed_file_list, True, r=True)
     repo.index.commit(str(messageBody['message']))
     return
