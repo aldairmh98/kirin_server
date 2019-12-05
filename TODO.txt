@@ -23,3 +23,19 @@ AGREGAR INTENTS PARA QUE YA QUEDE PARA LA TESINA:
         - Asignación de usuario o actualización -> change_user
         - Consulta de usuario -> show_user
         - Constulta de URL Remote -> show_url
+
+ENDPOINTS:
+    /intentRecognition [POST] <- input {
+        audio: wav
+    } -> output{
+        //Dialog Script
+        messages:[ {id:'commit_text',request: 'Dime el texto que lleva tu commit', default: '',response: '', selection: true | false, list_id:-1 | 0}],
+        intent: '',
+        lists:[ { id:0, variables: [ '','','','' ]} ]
+    }
+
+    /intent [POST] <- input {
+        messages:[]
+    }, -> output {
+        CODE: 200
+    }
