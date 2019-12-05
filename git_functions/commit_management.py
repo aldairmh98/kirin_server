@@ -1,6 +1,6 @@
 from git import Repo
 from git_functions.branch_management import branch_status
-from datetime import date
+from datetime import datetime
 
 
 repo = Repo('C:/Users/aldai/desarrollo/assistant_kirin/tutorial1')
@@ -20,5 +20,7 @@ def version(messageBody):
     repo.index.add(modified_file_list)
     if len(removed_file_list) > 0:
         repo.index.remove(removed_file_list, True, r=True)
-    repo.index.commit(str(messageBody['message']) + ' Versionado el: ' + date.today().__str__())
+    now = datetime.now()
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    repo.index.commit(str(messageBody['message']) + ' Versionado el: ' + dt_string)
     return
