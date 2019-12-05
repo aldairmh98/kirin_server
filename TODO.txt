@@ -39,5 +39,3 @@ ENDPOINTS:
     }, -> output {
         CODE: 200
     }
-
-    PRUEBA DE REVERT
