@@ -25,6 +25,7 @@ intent_dialog_flow = {
     'version': commit_dialogs.commit_dialog
 }
 
+commit_management.revert(messageBody={'sha': '40fa5972138915e0f86d3d41fc884ec1a22b55c1'})
 
 @app.route('/')
 def index():
