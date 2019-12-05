@@ -48,7 +48,6 @@ def say_hello():
 @app.route('/intentRecognition', methods=['POST'])
 def intent_recognition():
     type_ = request.args.get('type')
-    print(type_)
     utterance = ''
     if type_ == 'text':
         utterance = request.json['message']
