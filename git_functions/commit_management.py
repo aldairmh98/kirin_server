@@ -1,5 +1,8 @@
 from git import Repo
 from git_functions.branch_management import branch_status
+from datetime import date
+
+
 repo = Repo('C:/Users/aldai/desarrollo/assistant_kirin/tutorial1')
 
 
@@ -15,6 +18,7 @@ def version(messageBody):
     modified_file_list = [_file['path'] for _file in files_list if _file['status'] != 'D']
     removed_file_list = [_file['path'] for _file in files_list if _file['status'] == 'D']
     repo.index.add(modified_file_list)
-    repo.index.remove(removed_file_list, True, r=True)
-    repo.index.commit(str(messageBody['message']))
+    if len(removed_file_list) > 0:
+        repo.index.remove(removed_file_list, True, r=True)
+    repo.index.commit(str(messageBody['message']) + ' ' + date.today().__str__())
     return
