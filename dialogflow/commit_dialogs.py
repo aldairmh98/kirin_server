@@ -1,4 +1,6 @@
 from git_functions.branch_management import branch_status
+from git_functions import commit_management
+
 
 def FunctionName():
     print('Hi bro')
@@ -6,9 +8,14 @@ def FunctionName():
 
 
 def commit_dialog():
-    data = {}
-    data['id'] = 'commit_text'
-    data['request'] = 'Dime el mensaje para guardar tu versión: '
-    data['default'] = 'None'
-    data['selection'] = False
-    return [data]
+    return [{'id': 'commit_text', 'request': 'Dime el mensaje para guardar tu versión: ', 'default': 'None',
+            'selection': False, 'response': ''}]
+
+
+def commit_list():
+    return []
+
+
+def commit_back():
+    return [{'selection': True, 'response': None, 'request': 'Selecciona el commit al que quiera regresar',
+                    'default': None, 'id': 'commit_list', 'list': commit_management.commit_list({})}]
