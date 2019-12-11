@@ -151,6 +151,9 @@
 - pon nuevo url remoto
 - pon nuevo link remoto
 - asignar url remoto
+- cambiar url
+- nuevo url
+- asignar url
 
 
 ## intent:show_user
